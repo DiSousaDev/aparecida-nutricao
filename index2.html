@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Calcular Ajuste</title>
+</head>
+<body style="margin: 0 auto; width: 500px">
+
+	<div align="center">
+		<h1>Calcular percentual de Ajuste Usando JavaScript</h1>
+
+		<div align="left"> 
+            <label for="valor">Valor:</label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="text" id="idValor" name="valor"><br>
+            <br> <label for="ajuste">Ajuste Percentual:</label> <input type="text" id="idAjuste" name="ajuste"><br
+
+            <div align="center">
+                <br> <button id="btn" onclick="setValue();">Calcular</button>
+            </div>
+			
+			<h1 id="resultado"></h1>
+		</div>
+				
+		<br>
+		<br>
+		<a href="index.jsp">Página Inicial</a>
+	</div>
+    <script type="text/javascript">
+        function setValue() {
+            var valor = document.getElementById("idValor").value;
+            var ajuste = document.getElementById("idAjuste").value;
+        
+            document.querySelector("#resultado").innerHTML = "RESULTADO: " + (valor + (valor * ajuste));	
+        }
+    </script>
+</body>
+</html>

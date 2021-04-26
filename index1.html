@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<title>getElementById JavaScript</title>
+<meta charset="UTF-8">
+
+<script>
+function mensagem() {
+var valorNome = document.getElementById("idNome").value;
+
+// Exibir mensagem em caixa de alerta:
+alert("Bem-vindo, " + valorNome);
+
+// Copiar valor de uma caixa de texto para outra:
+document.getElementById("idNomeDigitado").value = document.getElementById("idNome").value;
+
+// Escrever na página (usando conteiner span):
+document.getElementById("mostraValor").innerHTML = "Muito bem, " + valorNome + " !"; 
+}
+</script>
+</head>
+
+<body>
+<p>Usando JavaScript getElementById</p>
+<form name="teste" method="GET" >
+<input type="text" name="nome" id="idNome"><br>
+<input type="text" name="nomeDigitado" id="idNomeDigitado"> 
+<button type="button" name="botao" id="idBotao" onclick="mensagem();">Clique Aqui</button>
+</form>
+
+<p><span id="mostraValor"></span></p>
+</body>
+</html>
