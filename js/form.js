@@ -1,18 +1,37 @@
 var botao = document.querySelector("#adicionar-paciente");
-botao.addEventListener("click", function(event){
+botao.addEventListener("click", function (event) {
     event.preventDefault();
-    
+
     var form = document.querySelector("#form-adicionar");
     var paciente = obtemPacienteDoFormulario(form);
 
     var pacienteTr = montaTr(paciente);
 
+    var erros = validaPaciente(paciente);
+
+    if (erros.length > 0) {
+        exibeMensagensDeErro(erros);
+        return;
+    }
+
     var tabela = document.querySelector("#tabela-pacientes");
     tabela.appendChild(pacienteTr);
 
     form.reset();
-
+    var ul = document.querySelector("#mensagens-erro");
+    ul.innerHTML = "";
 });
+
+function exibeMensagensDeErro(erros) {
+    var ul = document.querySelector("#mensagens-erro");
+    ul.innerHTML = "";
+
+    erros.forEach(function (erro) {
+        var li = document.createElement("li");
+        li.textContent = erro;
+        ul.appendChild(li);
+    });
+}
 
 function obtemPacienteDoFormulario(form) {
     var paciente = {
@@ -22,7 +41,7 @@ function obtemPacienteDoFormulario(form) {
         gordura: form.gordura.value,
         imc: calculaImc(peso, altura)
     }
-   return paciente;
+    return paciente;
 }
 
 function montaTr(paciente) {
@@ -52,3 +71,30 @@ function montaTd(args, classe) {
     td.classList.add(classe);
     return td;
 }
+
+function validaPaciente(paciente) {
+
+    var erros = [];
+
+    if (!validaPeso(paciente.peso)) {
+        erros.push("Peso Inválido!");
+    }
+
+    if (!validaAltura(paciente.altura)) {
+        erros.push("Altura Inválida!");
+    }
+
+    if (!validaNome(paciente.nome)) {
+        erros.push("Nome Inválido!");
+    }
+
+    if (!validaGordura(paciente.gordura)) {
+        erros.push("Porcentagem de Gordura inválida!");
+    }
+
+    if (!validaPesoEmBranco(paciente.peso)) {
+        erros.push("Peso não pode ser vazio!");
+    }
+    return erros;
+}
+
